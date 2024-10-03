@@ -16,3 +16,12 @@
 .inter-font {
   font-family: var(--font-inter);
 }
+
+.logo {
+  filter: invert(1);
+}
+
+.hover:fill-white:hover img {
+  color: aliceblue;
+  cursor: pointer;
+}
