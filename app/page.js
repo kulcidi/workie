@@ -1,4 +1,9 @@
 'use client'
+import Logo from '/public/Logo.svg'
+import InstagramIcon from '/public/inst.svg'
+import InbookIcon from '/public/inbook.svg'
+import FacebookIcon from '/public/facebook.svg'
+import TwitterIcon from '/public/twitter.svg'
 
 import { useState } from 'react'
 import Image from 'next/image'
@@ -102,60 +107,50 @@ export default function Home() {
 				</div>
 			</aside>
 
-			<footer className='py-6 visible w-full bg-black text-white'>
+			<footer className='py-6 visible w-full bg-black text-white flex justify-center flex-col'>
 				<div className='flex px-6'>
-					<div className='flex w-full justify-between items-start'>
-						<button className='flex items-center'>
-							<Image
-								src='/Logo.svg'
-								alt='Logo'
-								className='logo'
-								width={50}
-								height={50}
-							/>
-							<b className='popa-font ml-1 text-3xl'>DiveSea</b>
+					<div className='flex w-full justify-between items-center'>
+						<button className='flex flex-col items-start gap-4 mt-4'>
+							<div className='flex items-center'>
+								<Logo className='logo text-white' width={50} height={50} />
+								<b className='popa-font ml-1 text-3xl'>DiveSea</b>
+							</div>
 						</button>
-						<div className='flex gap-4 mt-4 items-end'>
-							<div className='hover:fill-white'>
-								<Image src='/inst.svg' alt='Instagram' width={24} height={24} />
+
+						<div className='flex gap-4 items-end mt-5'>
+							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+								<InstagramIcon width={24} height={24} />
 							</div>
-							<div className='hover:fill-white'>
-								<Image src='/inbook.svg' alt='Inbook' width={24} height={24} />
+							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+								<InbookIcon width={24} height={24} />
 							</div>
-							<div className='hover:fill-white'>
-								<Image
-									src='/facebook.svg'
-									alt='Facebook'
-									width={12}
-									height={12}
-								/>
+							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+								<FacebookIcon width={24} height={24} />
 							</div>
-							<div className='hover:fill-white'>
-								<Image
-									src='/twitter.svg'
-									alt='Twitter'
-									width={24}
-									height={24}
-								/>
+							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+								<TwitterIcon width={24} height={24} />
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='ml-5 flex flex-col gap-5 pt-8'>
-					<b className='inter-font font-thin ml-1 text-2xl uppercase'>
+					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
 						Privacy Policy
 					</b>
-					<b className='inter-font font-thin ml-1 text-2xl uppercase'>
-						term & Conditions
+					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
+						Terms & Conditions
 					</b>
-					<b className='inter-font font-thin ml-1 text-2xl uppercase'>
+					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
 						About sUs
 					</b>
-					<b className='inter-font font-thin ml-1 text-2xl uppercase'>
+					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
 						Contact
 					</b>
 				</div>
-				<div className='border-solid border-b border-white ml-4 mr-4'></div>
+				<div className='mt-3 border-solid border-b border-white ml-4 mr-4'></div>
+				<b className='text-gray-200 mt-3 text-center popa-font font-light opacity-40'>
+					© 2023 DiveSea All Rights Reserved.
+				</b>
 			</footer>
 		</div>
 	)
