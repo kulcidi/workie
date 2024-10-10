@@ -107,8 +107,8 @@ export default function Home() {
 				</div>
 			</aside>
 
-			<footer className='py-6 visible w-full bg-black text-white flex justify-center flex-col'>
-				<div className='flex px-6'>
+			<footer className='py-6 visible w-full bg-black text-white flex justify-center flex-col xl:px-28 lg:px-12'>
+				<div className='flex md:px-3 px-6 flex-col md:flex-row justify-between md:mb-9 mb-0'>
 					<div className='flex w-full justify-between items-center'>
 						<button className='flex flex-col items-start gap-4 mt-4'>
 							<div className='flex items-center'>
@@ -117,40 +117,81 @@ export default function Home() {
 							</div>
 						</button>
 
-						<div className='flex gap-4 items-end mt-5'>
-							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
-								<InstagramIcon width={24} height={24} />
+						<div className='flex gap-4 items-end mt-5 md:hidden'>
+							<div>
+								<InstagramIcon
+									className='opacity-50 hover:opacity-100 hover:cursor-pointer'
+									width={24}
+									height={24}
+								/>
 							</div>
-							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
-								<InbookIcon width={24} height={24} />
+							<div>
+								<InbookIcon
+									className='opacity-50 hover:opacity-100 hover:cursor-pointer'
+									width={24}
+									height={24}
+								/>
 							</div>
-							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
-								<FacebookIcon width={24} height={24} />
+							<div>
+								<FacebookIcon
+									className='opacity-50 hover:opacity-100 hover:cursor-pointer'
+									width={24}
+									height={24}
+								/>
 							</div>
-							<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
-								<TwitterIcon width={24} height={24} />
+							<div>
+								<TwitterIcon
+									className='opacity-50 hover:opacity-100 hover:cursor-pointer'
+									width={24}
+									height={24}
+								/>
 							</div>
 						</div>
 					</div>
+					<div className='ml-5 flex flex-col md:flex-row md:w-auto gap-5 pt-8'>
+						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+								Privacy Policy
+							</span>
+						</b>
+						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+								Terms & Conditions
+							</span>
+						</b>
+						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+								About Us
+							</span>
+						</b>
+						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+								Contact
+							</span>
+						</b>
+					</div>
 				</div>
-				<div className='ml-5 flex flex-col gap-5 pt-8'>
-					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
-						Privacy Policy
+
+				<div className='mt-3  border-solid border-b border-white ml-4 mr-4 opacity-80'></div>
+				<div className='md:mt-10 mt-4 md:mb-10 mx-3 flex flex-col md:flex-row justify-between items-center md:items-start'>
+					<b className='text-gray-200 text-center md:text-left popa-font font-light opacity-40'>
+						© 2023 DiveSea All Rights Reserved.
 					</b>
-					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
-						Terms & Conditions
-					</b>
-					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
-						About sUs
-					</b>
-					<b className='inter-font font-thin ml-1 text-2xl opacity-50 hover:opacity-100 hover:cursor-pointer uppercase'>
-						Contact
-					</b>
+					<div className='hidden gap-8 items-end md:flex'>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+							<InstagramIcon width={24} height={24} />
+						</div>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+							<InbookIcon width={24} height={24} />
+						</div>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+							<FacebookIcon width={24} height={24} />
+						</div>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+							<TwitterIcon width={24} height={24} />
+						</div>
+					</div>
 				</div>
-				<div className='mt-3 border-solid border-b border-white ml-4 mr-4'></div>
-				<b className='text-gray-200 mt-3 text-center popa-font font-light opacity-40'>
-					© 2023 DiveSea All Rights Reserved.
-				</b>
 			</footer>
 		</div>
 	)
