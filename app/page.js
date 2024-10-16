@@ -18,7 +18,7 @@ export default function Home() {
 	}
 
 	return (
-		<div>
+		<div className="">
 			<header className='flex justify-center px-6'>
 				<div className='py-6 visible flex justify-between w-full md:hidden md:border-none border-solid border-b border-gray-500'>
 					<button className='flex items-center'>
@@ -31,23 +31,23 @@ export default function Home() {
 				</div>
 			</header>
 
-			<header className='flex justify-center px-0 xl:px-28 lg:px-12'>
+			<header className='flex justify-center px-3 xl:px-28 lg:px-12'>
 				<div className='py-6 hidden justify-between w-full md:flex gap-9'>
 					<div className='flex gap-7 justify-start'>
 						<button className='flex items-center'>
 							<Image src='/Logo.svg' alt='Logo' width={50} height={50} />
 						</button>
 						<div className='inter-font uppercase flex items-center gap-2 xl:gap-9'>
-							<h4 className='text-gray-500 hover:text-black cursor-pointer'>
+							<h4 className='text-black opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-300'>
 								Discover
 							</h4>
-							<h4 className='text-gray-500 hover:text-black cursor-pointer'>
+							<h4 className='text-black opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-300'>
 								Creators
 							</h4>
-							<h4 className='text-gray-500 hover:text-black cursor-pointer'>
+							<h4 className='text-black opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-300'>
 								Sell
 							</h4>
-							<h4 className='text-gray-500 hover:text-black cursor-pointer'>
+							<h4 className='text-black opacity-60 hover:opacity-100 cursor-pointer transition-opacity duration-300'>
 								Stats
 							</h4>
 						</div>
@@ -62,7 +62,7 @@ export default function Home() {
 								height={20}
 							/>
 							<input
-								className='inter-font bg-[#EDEDED] focus:outline-none'
+								className='inter-font bg-[#EDEDED] focus:outline-none transition-opacity duration-300'
 								type='text'
 								placeholder='Search Art Work / Creator'
 							/>
@@ -106,7 +106,9 @@ export default function Home() {
 					</button>
 				</div>
 			</aside>
-
+			<div>
+				
+			</div>
 			<footer className='py-6 visible w-full bg-black text-white flex justify-center flex-col xl:px-28 lg:px-12'>
 				<div className='flex md:px-3 px-6 flex-col md:flex-row justify-between md:mb-9 mb-0'>
 					<div className='flex w-full justify-between items-center'>
@@ -150,22 +152,22 @@ export default function Home() {
 					</div>
 					<div className='ml-5 flex flex-col md:flex-row md:w-auto gap-5 pt-8'>
 						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
-							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block transition-opacity duration-300'>
 								Privacy Policy
 							</span>
 						</b>
 						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
-							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block transition-opacity duration-300'>
 								Terms & Conditions
 							</span>
 						</b>
-						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
-							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase '>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block transition-opacity duration-300'>
 								About Us
 							</span>
 						</b>
 						<b className='inter-font font-thin ml-1 text-2xl md:text-xl text-nowrap  md:capitalize uppercase'>
-							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block'>
+							<span className='hover:opacity-100 hover:cursor-pointer opacity-50 inline-block transition-opacity duration-300'>
 								Contact
 							</span>
 						</b>
@@ -178,16 +180,16 @@ export default function Home() {
 						© 2023 DiveSea All Rights Reserved.
 					</b>
 					<div className='hidden gap-8 items-end md:flex'>
-						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300'>
 							<InstagramIcon width={24} height={24} />
 						</div>
-						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300'>
 							<InbookIcon width={24} height={24} />
 						</div>
-						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300'>
 							<FacebookIcon width={24} height={24} />
 						</div>
-						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer'>
+						<div className='opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300'>
 							<TwitterIcon width={24} height={24} />
 						</div>
 					</div>
