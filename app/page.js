@@ -4,6 +4,8 @@ import InstagramIcon from '/public/inst.svg'
 import InbookIcon from '/public/inbook.svg'
 import FacebookIcon from '/public/facebook.svg'
 import TwitterIcon from '/public/twitter.svg'
+import TrustIcon from '/public/trust.svg'
+import ReviewsIcon from '/public/revies.svg'
 
 import { useState } from 'react'
 import Image from 'next/image'
@@ -18,7 +20,7 @@ export default function Home() {
 	}
 
 	return (
-		<div className="">
+		<div className=''>
 			<header className='flex justify-center px-6'>
 				<div className='py-6 visible flex justify-between w-full md:hidden md:border-none border-solid border-b border-gray-500'>
 					<button className='flex items-center'>
@@ -106,9 +108,37 @@ export default function Home() {
 					</button>
 				</div>
 			</aside>
-			<div>
-				
+			<div className='flex justify-center px-3 xl:px-28 lg:px-12'>
+				<div className='mt-8 flex flex-col items-center w-full'>
+					<div className='pt-6 visible flex items-center justify-center  w-full'>
+						<p className="uppercasecase relative text-gray-500 popa-font flex items-center before:content-[''] before:block before:w-16 before:h-[1px] before:bg-gray-500 before:mr-4">
+							OVER 1M CREATORS
+						</p>
+					</div>
+					<h1 className='text-center popa-font text-4xl flex-wrap w-80%'>
+						Discover And Create NFTs
+					</h1>
+					<div className='flex text-base popa-font w-70% text-center'>
+						<p>
+							Discover, Create and Sell NFTs On Our NFT Marketplace With Over
+							Thousands Of NFTs And Get a <b>$20 bonus.</b>
+						</p>
+					</div>
+					<section className='flex justify-center mt-4 gap-4'>
+						<button className='w-50% py-7 px-5 rounded-xl bg-black text-white border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-black hover:bg-white hover:border-2 hover:border-black transition duration-300'>
+							explore more
+						</button>
+						<button className='w-40% py-5 px-5 rounded-xl bg-white text-black border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-white hover:bg-black transition duration-300'>
+							create NFT
+						</button>
+					</section>
+					<section className='flex justify-center items-center gap-5 w-full'>
+						<TrustIcon width={200} height={100} alt='Trust' />
+						<ReviewsIcon width={200} height={100} alt='Reviews' />
+					</section>
+				</div>
 			</div>
+
 			<footer className='py-6 visible w-full bg-black text-white flex justify-center flex-col xl:px-28 lg:px-12'>
 				<div className='flex md:px-3 px-6 flex-col md:flex-row justify-between md:mb-9 mb-0'>
 					<div className='flex w-full justify-between items-center'>
