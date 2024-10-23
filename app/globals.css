@@ -25,3 +25,20 @@
   color: aliceblue;
   cursor: pointer;
 }
+
+.parallax {
+  scale: (0.4 0.3);
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* Try contain or specify size like 100% auto */
+  background-position: 50% 50%;
+  /* Initial background position */
+  will-change: background-position;
+  /* For performance optimization */
+  background-image: url('/HeroHeader.png'),
+    url('/image2.png'),
+    url('/image3.png');
+}

@@ -7,6 +7,8 @@ import TwitterIcon from '/public/twitter.svg'
 import TrustIcon from '/public/trust.svg'
 import ReviewsIcon from '/public/revies.svg'
 
+import { useEffect } from 'react'
+
 import { useState } from 'react'
 import Image from 'next/image'
 
@@ -18,6 +20,46 @@ export default function Home() {
 	const toggleAside = () => {
 		setIsAsideOpen(!isAsideOpen)
 	}
+
+
+	useEffect(() => {
+  const elem = document.querySelector('#parallax');
+
+  if (!elem) {
+    console.error('Element with id #parallax not found.');
+    return;
+  }
+
+  const handleMouseMove = (e) => {
+    // Get the center of the window (width and height)
+    let _w = window.innerWidth / 2;
+    let _h = window.innerHeight / 2;
+
+    // Get mouse x and y position relative to the center of the window
+    let _mouseX = e.clientX;
+    let _mouseY = e.clientY;
+
+    // Calculate depth for both x and y axes to ensure full parallax effect
+    let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${50 - (_mouseY - _h) * 0.01}%`;
+    let _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${50 - (_mouseY - _h) * 0.02}%`;
+    let _depth3 = `${50 - (_mouseX - _w) * 0.06}% ${50 - (_mouseY - _h) * 0.06}%`;
+
+    // Combine x and y depth into the backgroundPosition string
+    let backgroundPosition = `${_depth3}, ${_depth2}, ${_depth1}`;
+
+    // Apply the background positions to the element
+    elem.style.backgroundPosition = backgroundPosition;
+  };
+
+  // Attach mousemove event listener
+  document.addEventListener('mousemove', handleMouseMove);
+
+  // Clean up the event listener when component is unmounted
+  return () => {
+    document.removeEventListener('mousemove', handleMouseMove);
+  };
+}, []);
+
 
 	return (
 		<div className=''>
@@ -109,8 +151,8 @@ export default function Home() {
 				</div>
 			</aside>
 			<div className='flex justify-center px-3 xl:px-28 lg:px-12'>
-				<div className='mt-8 flex flex-col items-center w-full'>
-					<div className='pt-6 visible flex items-center justify-center  w-full'>
+				<div className='mt-8 visible md:hidden flex flex-col items-center w-full'>
+					<div className='pt-6 visible flex items-center justify-center w-full'>
 						<p className="uppercasecase relative text-gray-500 popa-font flex items-center before:content-[''] before:block before:w-16 before:h-[1px] before:bg-gray-500 before:mr-4">
 							OVER 1M CREATORS
 						</p>
@@ -125,10 +167,10 @@ export default function Home() {
 						</p>
 					</div>
 					<section className='flex justify-center mt-4 gap-4'>
-						<button className='w-50% py-7 px-5 rounded-xl bg-black text-white border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-black hover:bg-white hover:border-2 hover:border-black transition duration-300'>
+						<button className='w-50% py-4 px-5 rounded-xl bg-black text-white border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-black hover:bg-white hover:border-2 hover:border-black transition duration-300'>
 							explore more
 						</button>
-						<button className='w-40% py-5 px-5 rounded-xl bg-white text-black border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-white hover:bg-black transition duration-300'>
+						<button className='w-40% py-4 px-5 rounded-xl bg-white text-black border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-white hover:bg-black transition duration-300'>
 							create NFT
 						</button>
 					</section>
@@ -137,9 +179,56 @@ export default function Home() {
 						<ReviewsIcon width={200} height={100} alt='Reviews' />
 					</section>
 				</div>
+
+				{/* Этот блок скрыт на маленьких устройствах и показывается на средних и больших */}
+				<div className='mt-8 hidden md:grid grid-cols-2 gap-10 w-full h-auto'>
+					{/* First column with a large gap */}
+					<div className='text-left h-auto '>
+						<h1 className='popa-font text-5xl flex-wrap w-3/4'>
+							Discover And Create NFTs
+						</h1>
+						<div className='flex text-base popa-font w-3/4 mt-7'>
+							<p>
+								Discover, Create and Sell NFTs On Our NFT Marketplace With Over
+								Thousands Of NFTs And Get a <b>$20 bonus.</b>
+							</p>
+						</div>
+
+						{/* Button section */}
+						<section className='flex mt-7 gap-5'>
+							<button className='w-2/6 py-4 px-5 rounded-xl bg-black text-white border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-black hover:bg-white hover:border-black transition duration-300'>
+								explore more
+							</button>
+							<button className='w-2/6 py-4 px-5 rounded-xl bg-black text-white border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-black hover:bg-white hover:border-2 hover:border-black transition duration-300'>
+								create NFT
+							</button>
+						</section>
+						<section className='flex flex-row gap-8 mt-7 pl-1'>
+							<div className='flex flex-col'>
+								<h2 className='popa-font text-black text-3xl uppercase'>
+									430K+
+								</h2>
+								<p className='popa-font text-gray-600 '>Art Works</p>
+							</div>
+							<div className='flex flex-col'>
+								<h2 className='popa-font text-black text-3xl uppercase'>
+									159K+
+								</h2>
+								<p className='popa-font text-gray-600 '>Creators</p>
+							</div>
+							<div className='flex flex-col'>
+								<h2 className='popa-font text-black text-3xl uppercase'>87K</h2>
+								<p className='popa-font text-gray-600 '>Collections</p>
+							</div>
+						</section>
+					</div>
+
+					{/* Second column */}
+					<div id='parallax' class='parallax'></div>
+				</div>
 			</div>
 
-			<footer className='py-6 visible w-full bg-black text-white flex justify-center flex-col xl:px-28 lg:px-12'>
+			<footer className='py-6 visible w-full bg-black text-white  flex-col xl:px-28 lg:px-12'>
 				<div className='flex md:px-3 px-6 flex-col md:flex-row justify-between md:mb-9 mb-0'>
 					<div className='flex w-full justify-between items-center'>
 						<button className='flex flex-col items-start gap-4 mt-4'>
