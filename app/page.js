@@ -1,65 +1,113 @@
 'use client'
-import Logo from '/public/Logo.svg'
-import InstagramIcon from '/public/inst.svg'
-import InbookIcon from '/public/inbook.svg'
-import FacebookIcon from '/public/facebook.svg'
-import TwitterIcon from '/public/twitter.svg'
-import TrustIcon from '/public/trust.svg'
-import ReviewsIcon from '/public/revies.svg'
-
-import { useEffect } from 'react'
-
-import { useState } from 'react'
-import Image from 'next/image'
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Logo from '/public/Logo.svg';
+import InstagramIcon from '/public/inst.svg';
+import InbookIcon from '/public/inbook.svg';
+import FacebookIcon from '/public/facebook.svg';
+import TwitterIcon from '/public/twitter.svg';
+import TrustIcon from '/public/trust.svg';
+import ReviewsIcon from '/public/revies.svg';
 
 export default function Home() {
-	// State to manage the visibility of the sidebar
-	const [isAsideOpen, setIsAsideOpen] = useState(false)
+  // State to manage sidebar visibility
+  const [isAsideOpen, setIsAsideOpen] = useState(false);
 
-	// Function to toggle sidebar visibility
-	const toggleAside = () => {
-		setIsAsideOpen(!isAsideOpen)
-	}
-
-
-	useEffect(() => {
-  const elem = document.querySelector('#parallax');
-
-  if (!elem) {
-    console.error('Element with id #parallax not found.');
-    return;
-  }
-
-  const handleMouseMove = (e) => {
-    // Get the center of the window (width and height)
-    let _w = window.innerWidth / 2;
-    let _h = window.innerHeight / 2;
-
-    // Get mouse x and y position relative to the center of the window
-    let _mouseX = e.clientX;
-    let _mouseY = e.clientY;
-
-    // Calculate depth for both x and y axes to ensure full parallax effect
-    let _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${50 - (_mouseY - _h) * 0.01}%`;
-    let _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${50 - (_mouseY - _h) * 0.02}%`;
-    let _depth3 = `${50 - (_mouseX - _w) * 0.06}% ${50 - (_mouseY - _h) * 0.06}%`;
-
-    // Combine x and y depth into the backgroundPosition string
-    let backgroundPosition = `${_depth3}, ${_depth2}, ${_depth1}`;
-
-    // Apply the background positions to the element
-    elem.style.backgroundPosition = backgroundPosition;
+  // Toggle sidebar visibility
+  const toggleAside = () => {
+    setIsAsideOpen(!isAsideOpen);
   };
 
-  // Attach mousemove event listener
-  document.addEventListener('mousemove', handleMouseMove);
+  // Parallax effect
+  useEffect(() => {
+    const elem = document.querySelector('#parallax');
 
-  // Clean up the event listener when component is unmounted
-  return () => {
-    document.removeEventListener('mousemove', handleMouseMove);
+    if (!elem) {
+      console.error('Element with id #parallax not found.');
+      return;
+    }
+
+    const handleMouseMove = e => {
+      const _w = window.innerWidth / 2;
+      const _h = window.innerHeight / 2;
+      const _mouseX = e.clientX;
+      const _mouseY = e.clientY;
+
+      const _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${50 - (_mouseY - _h) * 0.01}%`;
+      const _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${50 - (_mouseY - _h) * 0.02}%`;
+      const _depth3 = `${50 - (_mouseX - _w) * 0.06}% ${50 - (_mouseY - _h) * 0.06}%`;
+
+      const backgroundPosition = `${_depth3}, ${_depth2}, ${_depth1}`;
+      elem.style.backgroundPosition = backgroundPosition;
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  const DragScrollComponent = () => {
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const handleMouseDown = (e) => {
+      const container = e.currentTarget;
+      setIsDragging(true);
+      setStartX(e.pageX - container.offsetLeft);
+      setScrollLeft(container.scrollLeft);
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    const handleMouseLeave = () => {
+      setIsDragging(false);
+    };
+
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+      const container = e.currentTarget;
+      e.preventDefault();
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 2; // Scrolling speed
+      container.scrollLeft = scrollLeft - walk;
+    };
+
+    return (
+      <div
+        className="dragscroll w-full h-[500px] overflow-auto flex flex-row gap-8"
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        onMouseMove={handleMouseMove}
+      >
+         <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
+    <h3 className="text-lg font-bold mb-2">Card 1</h3>
+    <p>Some content inside card 1</p>
+  </div>
+  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
+    <h3 className="text-lg font-bold mb-2">Card 2</h3>
+    <p>Some content inside card 2</p>
+  </div>
+  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
+    <h3 className="text-lg font-bold mb-2">Card 3</h3>
+    <p>Some content inside card 3</p>
+  </div>
+  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
+    <h3 className="text-lg font-bold mb-2">Card 4</h3>
+    <p>Some content inside card 4</p>
+  </div>
+  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
+    <h3 className="text-lg font-bold mb-2">Card 5</h3>
+    <p>Some content inside card 5</p>
+  </div>
+      </div>
+    );
   };
-}, []);
-
 
 	return (
 		<div className=''>
@@ -111,7 +159,7 @@ export default function Home() {
 								placeholder='Search Art Work / Creator'
 							/>
 						</div>
-						<button className='bg-black text-white py-4 px-7 h-auto rounded-2xl'>
+						<button className='bg-black text-white py-4 px-7 h-auto rounded-2xl hover:cursor-pointer hover:text-black hover:bg-white border-2 hover:border-2 hover:border-black transition duration-300'>
 							<h4 className='inter-font uppercase'>Connect Wallet</h4>
 						</button>
 					</div>
@@ -226,6 +274,15 @@ export default function Home() {
 					{/* Second column */}
 					<div id='parallax' class='parallax'></div>
 				</div>
+			</div>
+			<div className='bg-slate-200 w-full'>
+				 <DragScrollComponent />
+
+      <div className='flex justify-center mt-8'>
+        <h2 className='inter-font text-2xl'>Join us</h2>
+      </div>
+
+
 			</div>
 
 			<footer className='py-6 visible w-full bg-black text-white  flex-col xl:px-28 lg:px-12'>

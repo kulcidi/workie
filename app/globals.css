@@ -42,3 +42,11 @@
     url('/image2.png'),
     url('/image3.png');
 }
+
+.scroll-container {
+  cursor: grab;
+}
+body {
+  overflow: hidden;
+  /* Hide scrollbars */
+}
