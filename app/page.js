@@ -181,7 +181,7 @@ export default function Home() {
 				</div>
 
 				{/* Этот блок скрыт на маленьких устройствах и показывается на средних и больших */}
-				<div className='mt-8 hidden md:grid grid-cols-2 gap-10 w-full h-auto'>
+				<div className='mt-14 hidden md:grid grid-cols-2 gap-10 w-full h-auto'>
 					{/* First column with a large gap */}
 					<div className='text-left h-auto '>
 						<h1 className='popa-font text-5xl flex-wrap w-3/4'>
