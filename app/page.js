@@ -1,113 +1,166 @@
 'use client'
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Logo from '/public/Logo.svg';
-import InstagramIcon from '/public/inst.svg';
-import InbookIcon from '/public/inbook.svg';
-import FacebookIcon from '/public/facebook.svg';
-import TwitterIcon from '/public/twitter.svg';
-import TrustIcon from '/public/trust.svg';
-import ReviewsIcon from '/public/revies.svg';
+import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import Logo from '/public/Logo.svg'
+import InstagramIcon from '/public/inst.svg'
+import InbookIcon from '/public/inbook.svg'
+import FacebookIcon from '/public/facebook.svg'
+import Crystal from '/public/crystal.svg'
+import TwitterIcon from '/public/twitter.svg'
+import TrustIcon from '/public/trust.svg'
+import ReviewsIcon from '/public/revies.svg'
 
 export default function Home() {
-  // State to manage sidebar visibility
-  const [isAsideOpen, setIsAsideOpen] = useState(false);
+	// State to manage sidebar visibility
+	const [isAsideOpen, setIsAsideOpen] = useState(false)
 
-  // Toggle sidebar visibility
-  const toggleAside = () => {
-    setIsAsideOpen(!isAsideOpen);
-  };
+	// Toggle sidebar visibility
+	const toggleAside = () => {
+		setIsAsideOpen(!isAsideOpen)
+	}
 
-  // Parallax effect
-  useEffect(() => {
-    const elem = document.querySelector('#parallax');
+	// Parallax effect
+	useEffect(() => {
+		const elem = document.querySelector('#parallax')
 
-    if (!elem) {
-      console.error('Element with id #parallax not found.');
-      return;
-    }
+		if (!elem) {
+			console.error('Element with id #parallax not found.')
+			return
+		}
 
-    const handleMouseMove = e => {
-      const _w = window.innerWidth / 2;
-      const _h = window.innerHeight / 2;
-      const _mouseX = e.clientX;
-      const _mouseY = e.clientY;
+		const handleMouseMove = e => {
+			const _w = window.innerWidth / 2
+			const _h = window.innerHeight / 2
+			const _mouseX = e.clientX
+			const _mouseY = e.clientY
 
-      const _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${50 - (_mouseY - _h) * 0.01}%`;
-      const _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${50 - (_mouseY - _h) * 0.02}%`;
-      const _depth3 = `${50 - (_mouseX - _w) * 0.06}% ${50 - (_mouseY - _h) * 0.06}%`;
+			const _depth1 = `${50 - (_mouseX - _w) * 0.01}% ${
+				50 - (_mouseY - _h) * 0.01
+			}%`
+			const _depth2 = `${50 - (_mouseX - _w) * 0.02}% ${
+				50 - (_mouseY - _h) * 0.02
+			}%`
+			const _depth3 = `${50 - (_mouseX - _w) * 0.06}% ${
+				50 - (_mouseY - _h) * 0.06
+			}%`
 
-      const backgroundPosition = `${_depth3}, ${_depth2}, ${_depth1}`;
-      elem.style.backgroundPosition = backgroundPosition;
-    };
+			const backgroundPosition = `${_depth3}, ${_depth2}, ${_depth1}`
+			elem.style.backgroundPosition = backgroundPosition
+		}
 
-    document.addEventListener('mousemove', handleMouseMove);
+		document.addEventListener('mousemove', handleMouseMove)
 
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
+		return () => {
+			document.removeEventListener('mousemove', handleMouseMove)
+		}
+	}, [])
 
-  const DragScrollComponent = () => {
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
+	const DragScrollComponent = () => {
+		const [isDragging, setIsDragging] = useState(false)
+		const [startX, setStartX] = useState(0)
+		const [scrollLeft, setScrollLeft] = useState(0)
+		const [isMobile, setIsMobile] = useState(false)
+		const containerRef = useRef(null)
 
-    const handleMouseDown = (e) => {
-      const container = e.currentTarget;
-      setIsDragging(true);
-      setStartX(e.pageX - container.offsetLeft);
-      setScrollLeft(container.scrollLeft);
-    };
+		useEffect(() => {
+			const checkIsMobile = () => setIsMobile(window.innerWidth < 768)
+			checkIsMobile()
+			window.addEventListener('resize', checkIsMobile)
+			return () => window.removeEventListener('resize', checkIsMobile)
+		}, [])
 
-    const handleMouseUp = () => {
-      setIsDragging(false);
-    };
+		const handleMouseDown = e => {
+			const container = containerRef.current
+			setIsDragging(true)
+			setStartX(e.pageX - container.offsetLeft)
+			setScrollLeft(container.scrollLeft)
+		}
 
-    const handleMouseLeave = () => {
-      setIsDragging(false);
-    };
+		const handleMouseUp = () => {
+			setIsDragging(false)
+			if (isMobile) snapToClosest()
+		}
 
-    const handleMouseMove = (e) => {
-      if (!isDragging) return;
-      const container = e.currentTarget;
-      e.preventDefault();
-      const x = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 2; // Scrolling speed
-      container.scrollLeft = scrollLeft - walk;
-    };
+		const handleMouseLeave = () => {
+			setIsDragging(false)
+			if (isMobile) snapToClosest()
+		}
 
-    return (
-      <div
-        className="dragscroll w-full h-[500px] overflow-auto flex flex-row gap-8"
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}
-      >
-         <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
-    <h3 className="text-lg font-bold mb-2">Card 1</h3>
-    <p>Some content inside card 1</p>
-  </div>
-  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
-    <h3 className="text-lg font-bold mb-2">Card 2</h3>
-    <p>Some content inside card 2</p>
-  </div>
-  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
-    <h3 className="text-lg font-bold mb-2">Card 3</h3>
-    <p>Some content inside card 3</p>
-  </div>
-  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
-    <h3 className="text-lg font-bold mb-2">Card 4</h3>
-    <p>Some content inside card 4</p>
-  </div>
-  <div className="min-w-[300px] h-[340px] bg-white p-4 shadow-lg rounded-3xl">
-    <h3 className="text-lg font-bold mb-2">Card 5</h3>
-    <p>Some content inside card 5</p>
-  </div>
-      </div>
-    );
-  };
+		const handleMouseMove = e => {
+			if (!isDragging) return
+			const container = containerRef.current
+			e.preventDefault()
+			const x = e.pageX - container.offsetLeft
+			const walk = (x - startX) * 2
+			container.scrollLeft = scrollLeft - walk
+		}
+
+		const snapToClosest = () => {
+			const container = containerRef.current
+			const childWidth = 270 + 16
+			const snapIndex = Math.round(container.scrollLeft / childWidth)
+			container.scrollTo({
+				left: snapIndex * childWidth,
+				behavior: 'smooth',
+			})
+		}
+
+		const cardData = [
+			{ title: 'Sun-Glass 1', imgUrl: '/img/img.png' },
+			{ title: 'Sun-Glass 2', imgUrl: '/img/img1.png' },
+			{ title: 'Sun-Glass 3', imgUrl: '/img/img2.png' },
+			{ title: 'Sun-Glass 4', imgUrl: '/img/img3.png' },
+			{ title: 'Sun-Glass 5', imgUrl: '/img/img4.png' },
+		]
+
+		return (
+			<div
+				ref={containerRef}
+				className='scroll-hidden w-full h-[500px] overflow-x-auto flex flex-row gap-4 cursor-pointer p-5 scroll-smooth'
+				onMouseDown={handleMouseDown}
+				onMouseUp={handleMouseUp}
+				onMouseLeave={handleMouseLeave}
+				onMouseMove={handleMouseMove}
+				style={{
+					scrollSnapType: isMobile ? 'x mandatory' : 'none',
+					scrollBehavior: 'smooth',
+				}}>
+				{cardData.map((card, index) => (
+					<div
+						key={index}
+						className='min-w-[280px] h-[400px] bg-gray-100 p-4 shadow-lg rounded-3xl scroll-snap-align-center transition-all duration-700 flex flex-col '>
+						<img
+							src={card.imgUrl}
+							alt={card.title}
+							className='w-full h-full max-w-[250px] max-h-[250px] mb-2 rounded-xl object-cover pointer-events-none'
+						/>
+						<div className='px-1 text-left'>
+							<h3 className='text-lg  font-bold mb-2 mt-1 popa-font'>
+								{card.title}
+							</h3>
+							<div className='flex items-start justify-between w-full'>
+								<div className='flex flex-col mt-1'>
+									<p className='text-gray-400 text-sm popa-font justify-center'>
+										Current bid
+									</p>
+									<div className='flex flex-row '>
+										<Crystal className='opacity-100 ' width={24} height={24} />
+										<p className='text-black text-lg popa-font justify-center items-center'>
+											1.75
+										</p>
+									</div>
+								</div>
+
+								<button className='w-2/6 h-4/6 w-2/4 py-4 text-sm  rounded-2xl bg-black text-white border-2 border-black uppercase popa-font hover:cursor-pointer hover:text-black hover:bg-white hover:border-black transition duration-300'>
+									PLACE BID
+								</button>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		)
+	}
 
 	return (
 		<div className=''>
@@ -275,14 +328,14 @@ export default function Home() {
 					<div id='parallax' class='parallax'></div>
 				</div>
 			</div>
-			<div className='bg-slate-200 w-full'>
-				 <DragScrollComponent />
 
-      <div className='flex justify-center mt-8'>
-        <h2 className='inter-font text-2xl'>Join us</h2>
-      </div>
+			<div className='bg-[#F1F1F1] w-full pt-10 hover:cursor-'>
+				<h2 className='popa-font text-center text-gray-400 text-3xl'>
+					Weekly - Top NFT
+				</h2>
+				<DragScrollComponent />
 
-
+				<div className='flex justify-center pt-8'></div>
 			</div>
 
 			<footer className='py-6 visible w-full bg-black text-white  flex-col xl:px-28 lg:px-12'>
